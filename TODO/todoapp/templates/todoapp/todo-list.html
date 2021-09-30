@@ -1,0 +1,43 @@
+{% extends 'todoapp/base.html' %}
+{% block title %}Todo | List{% endblock title %}
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+    <div class="alert alert-warning" role="alert">
+        Todo ! List of {{request.user}}
+    </div>
+    <a class="btn btn-success" href="{% url 'task-logout' %}" role="button">Logout</a>
+    {% else %}
+    <a class="btn btn-success" href="{% url 'task-login' %}" role="button">Login</a>
+    {% endif %}
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto my-auto">
+    <a class="btn btn-success" href="{% url 'task-create' %}" role="button">Create Task</a>
+    <hr>
+    <table>
+    <tr>
+    <th>List of Todos</th>
+     </tr>
+    {% for data in tasks %}
+   <tr>
+   
+   <td>{{data.title}}</td> 
+   <td><a class="btn btn-success" href="{% url 'task' data.id %}" role="button">View</a></td> 
+   <td><a class="btn btn-primary" href="{% url 'task-update' data.id %}" role="button">Edit</a></td>  
+   <td><a class="btn btn-danger" href="{% url 'task-delete' data.id %}" role="button">Delete</a></td> 
+    </tr>
+
+    {% empty %}
+
+    <h5>No data present</h5>
+
+    {% endfor %}
+</table>
+</div>
+</div>
+</div>
+{% endblock content %}
+
+{% block script %} {% endblock script %}

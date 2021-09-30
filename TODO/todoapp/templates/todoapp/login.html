@@ -1,0 +1,24 @@
+{% extends 'todoapp/base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4 mx-auto my-auto">
+<h1>Login</h1>
+<hr>
+<form class ="form-group" action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <hr>
+    <input class="btn btn-success" type="submit" value="Login">
+    <hr>
+</form>
+<p>Haven't registered yet? <a class="btn btn-primary" href="{% url 'task-register' %}" role="button">Register</a></p>
+</div>
+</div>
+</div>
+
+{% endblock content %}
+
+{% block script %} {% endblock script %}
